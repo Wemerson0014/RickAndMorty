@@ -5,8 +5,11 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,7 +21,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val textView = findViewById<TextView>(R.id.textView)
+        val nameTextView = findViewById<AppCompatTextView>(R.id.nameTextView)
+        val aliveTextView = findViewById<AppCompatTextView>(R.id.aliveTextView)
+        val originTextView = findViewById<AppCompatTextView>(R.id.originTextView)
+        val speciesTextView = findViewById<AppCompatTextView>(R.id.speciesTextView)
+        val headerImageView = findViewById<AppCompatImageView>(R.id.headerImageView)
+        val genderImageView = findViewById<AppCompatImageView>(R.id.genderImageView)
+
         val moshi = Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()
         val retrofit: Retrofit = Retrofit.Builder()
             .baseUrl("https://rickandmortyapi.com/api/")
@@ -37,8 +46,18 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 val body = response.body()!!
-                val name = body.name
-                textView.text = name
+                nameTextView.text = body.name
+                aliveTextView.text = body.status
+                speciesTextView.text = body.species
+                originTextView.text = body.origin.name
+
+                if (body.gender.equals("male", true)) {
+                    genderImageView.setImageResource(R.drawable.ic_male_24)
+                } else {
+                    genderImageView.setImageResource(R.drawable.ic_female_24)
+                }
+
+                Picasso.get().load(body.image).into(headerImageView)
             }
 
             override fun onFailure(call: Call<GetCharacterByIdResponse>, t: Throwable) {
