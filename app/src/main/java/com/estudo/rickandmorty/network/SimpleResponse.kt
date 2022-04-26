@@ -1,4 +1,4 @@
-package com.estudo.rickandmorty
+package com.estudo.rickandmorty.network
 
 import retrofit2.Response
 import java.lang.Exception
