@@ -1,5 +1,6 @@
-package com.estudo.rickandmorty
+package com.estudo.rickandmorty.network
 
+import com.estudo.rickandmorty.network.response.GetCharacterByIdResponse
 import retrofit2.Response
 import java.lang.Exception
 
