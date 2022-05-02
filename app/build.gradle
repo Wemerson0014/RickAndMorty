@@ -63,7 +63,12 @@ dependencies {
     //Epoxy
     def epoxyVersion = "4.6.2"
     implementation "com.airbnb.android:epoxy:$epoxyVersion"
+    implementation "com.airbnb.android:epoxy-paging:$epoxyVersion"
     kapt "com.airbnb.android:epoxy-processor:$epoxyVersion"
+
+    //Paging
+    def paging_version = "3.1.1"
+    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
 
     //Test
     testImplementation 'junit:junit:4.13.2'
