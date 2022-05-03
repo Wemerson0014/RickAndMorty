@@ -3,31 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="220dp"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/cardBackground"
     app:cardCornerRadius="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/characterImageView"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            tools:src="@tools:sample/avatars[2]" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/characterNameTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/background"
-            android:padding="16dp"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="8dp"
             android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            tools:text="Morty Smith" />
+            android:textSize="22sp"
+            android:textStyle="bold|italic"
+            tools:text="Header Text" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
