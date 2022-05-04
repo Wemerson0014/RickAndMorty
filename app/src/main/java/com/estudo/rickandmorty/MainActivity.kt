@@ -1,6 +1,7 @@
 package com.estudo.rickandmorty
 
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -18,7 +19,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        viewModel.refreshCharacter(54)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         viewModel.characterByIdLiveData.observe(this) { response ->
             epoxyController.characterResponse = response
 
@@ -29,9 +31,21 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        viewModel.refreshCharacter(54)
+        val id = intent.getIntExtra(Constants.INTENT_EXTRA_CHARACTER_ID, 1)
+        viewModel.refreshCharacter(characterId = id)
 
         val epoxyRecyclerView = findViewById<EpoxyRecyclerView>(R.id.epoxyRecyclerView)
         epoxyRecyclerView.setControllerAndBuildModels(epoxyController)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId) {
+            android.R.id.home -> {
+                finish()
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }
