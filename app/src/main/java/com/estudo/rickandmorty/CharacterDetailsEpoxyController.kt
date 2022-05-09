@@ -2,13 +2,12 @@ package com.estudo.rickandmorty
 
 import com.airbnb.epoxy.EpoxyController
 import com.estudo.rickandmorty.databinding.*
+import com.estudo.rickandmorty.domain.models.Character
 import com.estudo.rickandmorty.epoxy.LoadingEpoxyModel
 import com.estudo.rickandmorty.epoxy.ViewBindingKotlinModel
-import com.estudo.rickandmorty.network.response.GetCharacterByIdResponse
 import com.squareup.picasso.Picasso
 
-class CharacterDetailsEpoxyController(
-) : EpoxyController() {
+class CharacterDetailsEpoxyController : EpoxyController() {
 
     var isLoading: Boolean = true
         set(value) {
@@ -18,7 +17,7 @@ class CharacterDetailsEpoxyController(
             }
         }
 
-    var characterResponse: GetCharacterByIdResponse? = null
+    var character: Character? = null
         set(value) {
             field = value
             if (field != null) {
@@ -34,30 +33,30 @@ class CharacterDetailsEpoxyController(
             return
         }
 
-        if (characterResponse == null) {
+        if (character == null) {
             return
         }
 
         HeaderEpoxyModel(
-            name = characterResponse!!.name,
-            gender = characterResponse!!.gender,
-            status = characterResponse!!.status
+            name = character!!.name,
+            gender = character!!.gender,
+            status = character!!.status
         ).id("header").addTo(this)
 
         // Image Model
         ImageEpoxyModel(
-            imageUrl = characterResponse!!.image
+            imageUrl = character!!.image
         ).id("image").addTo(this)
 
         // Data point models
         DataPointEpoxyModel(
             title = "Origin",
-            description = characterResponse!!.origin.name
+            description = character!!.origin.name
         ).id("data_point_1").addTo(this)
 
         DataPointEpoxyModel(
             title = "Species",
-            description = characterResponse!!.species
+            description = character!!.species
         ).id("data_point_2").addTo(this)
     }
 }
