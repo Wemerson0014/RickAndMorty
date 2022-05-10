@@ -13,7 +13,7 @@ import java.util.*
 
 class CharacterListPagingEpoxyController(
     private val onCharacterSelected: (Int) -> Unit
-): PagedListEpoxyController<GetCharacterByIdResponse>() {
+) : PagedListEpoxyController<GetCharacterByIdResponse>() {
 
     override fun buildItemModel(
         currentPosition: Int,
@@ -56,7 +56,7 @@ class CharacterListPagingEpoxyController(
         val imageUrl: String,
         val name: String,
         val onCharacterSelected: (Int) -> Unit
-    ): ViewBindingKotlinModel<ModelCharacterListItemBinding>(R.layout.model_character_list_item) {
+    ) : ViewBindingKotlinModel<ModelCharacterListItemBinding>(R.layout.model_character_list_item) {
 
         override fun ModelCharacterListItemBinding.bind() {
             Picasso.get().load(imageUrl).into(characterImageView)
@@ -70,7 +70,7 @@ class CharacterListPagingEpoxyController(
 
     data class CharacterGridTitleEpoxyModel(
         val title: String
-    ): ViewBindingKotlinModel<ModelCharacterListTitleBinding>(R.layout.model_character_list_title) {
+    ) : ViewBindingKotlinModel<ModelCharacterListTitleBinding>(R.layout.model_character_list_title) {
 
         override fun ModelCharacterListTitleBinding.bind() {
             textView.text = title
@@ -79,6 +79,5 @@ class CharacterListPagingEpoxyController(
         override fun getSpanSize(totalSpanCount: Int, position: Int, itemCount: Int): Int {
             return totalSpanCount
         }
-
     }
 }
