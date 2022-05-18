@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.airbnb.epoxy.EpoxyRecyclerView
 
-class MainActivity : AppCompatActivity() {
+class CharacterDetailActivity : AppCompatActivity() {
 
     val viewModel: SharedViewModel by lazy {
         ViewModelProvider(this).get(SharedViewModel::class.java)
@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_character_details)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
             epoxyController.character = character
 
             if (character == null) {
-                Toast.makeText(this@MainActivity, "Unsuccessful network call", Toast.LENGTH_SHORT)
+                Toast.makeText(this@CharacterDetailActivity, "Unsuccessful network call", Toast.LENGTH_SHORT)
                     .show()
                 return@observe
             }

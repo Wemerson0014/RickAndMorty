@@ -12,12 +12,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RickAndMorty">
         <activity
-            android:name=".MainActivity"
+            android:name=".CharacterDetailActivity"
             android:exported="true">
 
         </activity>
 
-        <activity android:name=".characters.CharacterListActivity"
+        <activity
+            android:name=".characters.CharacterListActivity"
+            android:exported="true">
+
+        </activity>
+
+        <activity
+            android:name=".NavGraphActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
