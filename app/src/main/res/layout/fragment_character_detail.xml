@@ -9,10 +9,9 @@
         android:id="@+id/epoxyRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="8dp"
-        app:itemSpacing="8dp"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="2"
-        tools:itemCount="12" />
+        android:orientation="vertical"
+        android:paddingBottom="24dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/model_character_details_header"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
