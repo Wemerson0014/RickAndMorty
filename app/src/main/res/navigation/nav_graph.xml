@@ -36,4 +36,12 @@
 
     </fragment>
 
+    <fragment
+        android:id="@+id/episodeListFragment"
+        android:name="com.estudo.rickandmorty.EpisodeListFragment"
+        android:label="Rick And Morty Episodes"
+        tools:layout="@layout/fragment_episode_list">
+
+    </fragment>
+
 </navigation>
