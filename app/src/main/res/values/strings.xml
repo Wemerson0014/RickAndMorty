@@ -5,6 +5,9 @@
     <string name="origin">Origin</string>
     <string name="species">Species</string>
     <string name="alive">Alive</string>
+    <!-- menu_drawer_layout -->
+    <string name="all_characters">All Characters</string>
+    <string name="all_episodes">All Episodes</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
