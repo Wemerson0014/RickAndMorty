@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/characterListFragment"
-        android:title="@string/all_characters" />
-    <item
-        android:id="@+id/episodeListFragment"
-        android:title="@string/all_episodes" />
+    <item android:title="@string/characters">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/characterListFragment"
+                    android:icon="@drawable/ic_people"
+                    android:title="@string/all_characters" />
+            </group>
+        </menu>
+    </item>
+    <item android:title="@string/Episodes">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/episodeListFragment"
+                    android:icon="@drawable/ic_episode"
+                    android:title="@string/all_episodes" />
+            </group>
+        </menu>
+    </item>
 </menu>
