@@ -1,4 +1,4 @@
-package com.estudo.rickandmorty
+package com.estudo.rickandmorty.characters
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,8 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.airbnb.epoxy.EpoxyRecyclerView
-import com.estudo.rickandmorty.characters.CharacterListPagingEpoxyController
-import com.estudo.rickandmorty.characters.CharactersViewModel
+import com.estudo.rickandmorty.R
 
 class CharacterListFragment : Fragment() {
 

@@ -1,7 +1,6 @@
 package com.estudo.rickandmorty.characters
 
 import androidx.paging.DataSource
-import com.estudo.rickandmorty.CharactersRepository
 import com.estudo.rickandmorty.network.response.GetCharacterByIdResponse
 import kotlinx.coroutines.CoroutineScope
 

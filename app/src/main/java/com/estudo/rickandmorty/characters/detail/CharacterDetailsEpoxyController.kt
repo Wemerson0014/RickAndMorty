@@ -1,7 +1,8 @@
-package com.estudo.rickandmorty
+package com.estudo.rickandmorty.characters.detail
 
 import com.airbnb.epoxy.CarouselModel_
 import com.airbnb.epoxy.EpoxyController
+import com.estudo.rickandmorty.R
 import com.estudo.rickandmorty.databinding.*
 import com.estudo.rickandmorty.domain.models.Character
 import com.estudo.rickandmorty.domain.models.Episode
@@ -123,7 +124,7 @@ class CharacterDetailsEpoxyController : EpoxyController() {
     ) : ViewBindingKotlinModel<ModelEpisodeCarouselItemBinding>(R.layout.model_episode_carousel_item) {
 
         override fun ModelEpisodeCarouselItemBinding.bind() {
-            episodeTextView.text = episode.episode
+            episodeTextView.text = episode.getFormattedSeasonTruncate()
             episodeDetailsTextView.text = "${episode.name}\n${episode.airDate}"
         }
     }
