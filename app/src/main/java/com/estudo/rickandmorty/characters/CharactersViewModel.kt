@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
-import com.estudo.rickandmorty.CharactersRepository
 import com.estudo.rickandmorty.Constants
 import com.estudo.rickandmorty.network.response.GetCharacterByIdResponse
 
