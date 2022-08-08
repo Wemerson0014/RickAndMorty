@@ -5,11 +5,15 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/characterListFragment">
 
+    <action
+        android:id="@+id/action_episodeListFragment_to_episodeDetailBottomSheetFragment"
+        app:destination="@id/episodeDetailBottomSheetFragment" />
+
     <fragment
         android:id="@+id/characterListFragment"
         android:name="com.estudo.rickandmorty.characters.CharacterListFragment"
         android:label="Rick and Morty Characters"
-        tools:layout="@layout/fragment_character_list" >
+        tools:layout="@layout/fragment_character_list">
 
         <action
             android:id="@+id/action_characterListFragment_to_characterDetailFragment"
@@ -17,7 +21,7 @@
             app:enterAnim="@anim/slide_in_from_right"
             app:exitAnim="@anim/slide_out_to_left"
             app:popEnterAnim="@anim/slide_in_from_left"
-            app:popExitAnim="@anim/slide_out_to_right"/>
+            app:popExitAnim="@anim/slide_out_to_right" />
 
     </fragment>
 
@@ -33,15 +37,25 @@
             android:name="characterId"
             android:defaultValue="-1"
             app:argType="integer" />
-
     </fragment>
 
     <fragment
         android:id="@+id/episodeListFragment"
         android:name="com.estudo.rickandmorty.episodes.EpisodeListFragment"
-        android:label="Rick And Morty Episodes"
-        tools:layout="@layout/fragment_episode_list">
+        android:label="Rick and Morty Episodes"
+        tools:layout="@layout/fragment_episode_list" />
 
-    </fragment>
+    <dialog
+        android:id="@+id/episodeDetailBottomSheetFragment"
+        android:name="com.estudo.rickandmorty.episodes.detail.EpisodeDetailBottomSheetFragment"
+        android:label=""
+        tools:layout="@layout/fragment_episode_detail">
+
+        <argument
+            android:name="episodeId"
+            android:defaultValue="-1"
+            app:argType="integer" />
+
+    </dialog>
 
 </navigation>
