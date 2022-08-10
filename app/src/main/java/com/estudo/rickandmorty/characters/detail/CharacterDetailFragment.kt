@@ -6,39 +6,44 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.airbnb.epoxy.EpoxyRecyclerView
+import com.estudo.rickandmorty.NavGraphDirections
 import com.estudo.rickandmorty.R
+import com.estudo.rickandmorty.databinding.FragmentCharacterDetailBinding
 
-class CharacterDetailFragment : Fragment() {
+class CharacterDetailFragment : Fragment(R.layout.fragment_character_detail) {
 
-    private val viewModel: CharacterDetailViewModel by lazy {
-        ViewModelProvider(this).get(CharacterDetailViewModel::class.java)
-    }
+    private var _binding: FragmentCharacterDetailBinding? = null
+    private val binding get() = _binding!!
 
-    private val epoxyController = CharacterDetailsEpoxyController()
-
+    private val viewModel: CharacterDetailViewModel by viewModels()
     private val safeArgs: CharacterDetailFragmentArgs by navArgs()
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_character_detail, container, false)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        _binding = FragmentCharacterDetailBinding.bind(view)
+
+        val epoxyController = CharacterDetailsEpoxyController { episodeClickedId ->
+            val navDirections = NavGraphDirections.actionGlobalToEpisodeDetailBottomSheetFragment(
+                episodeId = episodeClickedId
+            )
+            findNavController().navigate(navDirections)
+        }
 
         viewModel.characterByIdLiveData.observe(viewLifecycleOwner) { character ->
+
             epoxyController.character = character
 
             if (character == null) {
-                Toast.makeText(requireActivity(), "Unsuccessful network call", Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(
+                    requireActivity(),
+                    "Unsuccessful network call!",
+                    Toast.LENGTH_SHORT
+                ).show()
                 findNavController().navigateUp()
                 return@observe
             }
@@ -46,7 +51,11 @@ class CharacterDetailFragment : Fragment() {
 
         viewModel.fetchCharacter(characterId = safeArgs.characterId)
 
-        val epoxyRecyclerView = view.findViewById<EpoxyRecyclerView>(R.id.epoxyRecyclerView)
-        epoxyRecyclerView.setControllerAndBuildModels(epoxyController)
+        binding.epoxyRecyclerView.setControllerAndBuildModels(epoxyController)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
