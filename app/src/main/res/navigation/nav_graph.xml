@@ -40,6 +40,12 @@
     </fragment>
 
     <fragment
+        android:id="@+id/characterSearchFragment"
+        android:name="com.estudo.rickandmorty.characters.search.CharacterSearchFragment"
+        android:label="Character Search"
+        tools:layout="@layout/fragment_character_search" />
+
+    <fragment
         android:id="@+id/episodeListFragment"
         android:name="com.estudo.rickandmorty.episodes.EpisodeListFragment"
         android:label="Rick and Morty Episodes"
