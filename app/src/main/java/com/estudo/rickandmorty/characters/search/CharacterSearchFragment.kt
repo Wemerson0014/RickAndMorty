@@ -19,7 +19,7 @@ class CharacterSearchFragment : Fragment(R.layout.fragment_character_search) {
     private var _binding: FragmentCharacterSearchBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel : CharacterSearchViewModel by viewModels()
+    private val viewModel: CharacterSearchViewModel by viewModels()
 
     private var currentText = ""
     private val handler = Handler(Looper.getMainLooper())
@@ -46,7 +46,14 @@ class CharacterSearchFragment : Fragment(R.layout.fragment_character_search) {
 
         lifecycleScope.launch {
             viewModel.flow.collectLatest { pagingData ->
+                epoxyController.localException = null
                 epoxyController.submitData(pagingData)
+            }
+        }
+
+        viewModel.localExceptionEventLiveData.observe(viewLifecycleOwner) { event ->
+            event.getContent()?.let { localException ->
+                epoxyController.localException = localException
             }
         }
     }

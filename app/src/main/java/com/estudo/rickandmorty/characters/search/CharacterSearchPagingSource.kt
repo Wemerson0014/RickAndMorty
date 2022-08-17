@@ -6,16 +6,24 @@ import com.estudo.rickandmorty.domain.mappers.CharacterMapper
 import com.estudo.rickandmorty.domain.models.Character
 import com.estudo.rickandmorty.network.NetworkLayer
 import kotlinx.coroutines.ObsoleteCoroutinesApi
-import kotlin.reflect.jvm.internal.impl.descriptors.Visibilities
 
 class CharacterSearchPagingSource(
     private val userSearch: String,
     private val localExceptionCallback: (LocalException) -> Unit
 ) : PagingSource<Int, Character>() {
 
-    sealed class LocalException : Exception() {
-        object EmptySearch : LocalException()
-        object NoResults : LocalException()
+    sealed class LocalException(
+        val title: String,
+        val description: String = ""
+    ) : Exception() {
+        object EmptySearch : LocalException(
+            title = "Start typing to search!"
+        )
+
+        object NoResults : LocalException(
+            title = "Whoops",
+            description = "Looks like your searched returned no results"
+        )
     }
 
     @ObsoleteCoroutinesApi
@@ -40,6 +48,12 @@ class CharacterSearchPagingSource(
             characterName = userSearch,
             pageIndex = pageNumber
         )
+
+        if (request.data?.code() == 404) {
+            val exception = LocalException.NoResults
+            localExceptionCallback(exception)
+            return LoadResult.Error(exception)
+        }
 
         request.exception?.let {
             return LoadResult.Error(it)
